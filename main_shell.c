@@ -17,7 +17,8 @@ char **_copyenv(void)
 	size_t size;
 	int index;
 
-	for (size = 0; environ[size]; size++);
+	for (size = 0; environ[size]; size++)
+		;
 
 	new_environ = malloc(sizeof(char *) * (size + 1));
 	if (!new_environ)
@@ -48,7 +49,7 @@ char **_copyenv(void)
  */
 void sig_handler(int sig)
 {
-	char *new_prompt = "\n$> ";
+	char *new_prompt = "\n$ ";
 
 	(void)sig;
 	signal(SIGINT, sig_handler);
@@ -124,7 +125,7 @@ int main(int argc, char *argv[])
 {
 	int ret = 0, retn;
 	int *exe_ret = &retn;
-	char *prompt = "$", *new_line = "\n";
+	char *prompt = "$ ", *new_line = "\n";
 
 	name = argv[0];
 	hist = 1;
@@ -171,4 +172,3 @@ int main(int argc, char *argv[])
 	free_alias_list(aliases);
 	return (*exe_ret);
 }
-
