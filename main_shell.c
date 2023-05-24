@@ -49,7 +49,7 @@ char **_copyenv(void)
  */
 void sig_handler(int sig)
 {
-	char *new_prompt = "\n$ ";
+	char *new_prompt = "\n$> ";
 
 	(void)sig;
 	signal(SIGINT, sig_handler);
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 {
 	int ret = 0, retn;
 	int *exe_ret = &retn;
-	char *prompt = "$ ", *new_line = "\n";
+	char *prompt = "$", *new_line = "\n";
 
 	name = argv[0];
 	hist = 1;
